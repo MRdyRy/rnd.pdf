@@ -25,4 +25,18 @@ public class GeneratePdfController {
         log.info("genereate pdf call : with request {}",sampleReq);
         return pdfService.generatePdf(sampleReq,httpServletResponse);
     }
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/test/ios", produces = MediaType.APPLICATION_PDF_VALUE)
+    public byte[] generatePdfIos(HttpServletResponse httpServletResponse){
+        SampleReq sampleReq = SampleReq.builder()
+                .fullName("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+                .price("1234565591,./'';!@#$%^&*()")
+                .nationality("abcdefghijklmnopqrstuvwxyz")
+                .position("=+-:")
+                .build();
+        log.info("genereate pdf using ios call : with request {}",sampleReq);
+        return pdfService.generatePdf(sampleReq,httpServletResponse);
+    }
+
 }
